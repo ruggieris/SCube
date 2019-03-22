@@ -22,7 +22,34 @@ The normalization factor _2P(1-P)_ is to obtain an index in the range [0, 1]. Si
 
 In the analysis of segregation in the network of boards of directors, the starting point is the graph of companies linked by shared directors. Notice that in such a graph, there is no a-priori defined division of nodes into organizational units. The graph has then to be split into connected components, and, for the Giant component, it is further split by removing edges that connect companies with less than a given number of shared directors. The resulting connected components represent the set of units in the calculation of the dissimilarity index (the __n__ in the formula above). Other clustering approach are also supported by SCube.
 
+## Input Files
+
+## Input Parameters
+
 ## Standalone Wizard GUI
+
+SCube includes a standalone Graphical User Interface (GUI) to launch the system without any programming expertise. The GUI allow the user to set the input files and the 5 parameters described above. **The standalone GUI has been tested on Windows OS only.** A screenshot of the GUI is provided next.
+
+<img src="img/gui1.png" alt="Standalone Wizard GUI" width="500"/>
+
+After setting input directory, files, use of isolated nodes, and CA-attributes, the user can start the computation. The GUI will ask for the clustering algorithm to use. Leave the default one, which use connected components after removing from the giant component links between companies that share a number of directors in their boards lower or equal than a minimum threshold.
+
+<img src="img/gui2.png" alt="Clustering Algorithm" width="200"/>
+
+The GUI will ask for the minimum edge-weight theshold. In [[2-3]](#references), we experimented with 3, but this number can be set by the user. The GUI shows the full range of possible number of shared directors.
+
+<img src="img/gui3.png" alt="Minimum Edge-Weight" width="250"/>
+
+Next the GUI will ask for the minimum support threshold, so that only cases with **M** (size of the minority population) greater or equal than the threshold will be considered. The GUI will show the range of possible values of such a threshold. In [[2-3]](#references), we experimented with 500, but this number can be set by the user.
+
+<img src="img/gui4.png" alt="Minimum Support" width="250"/>
+
+This is the last parameter needed. The computation will continue, and a log of the progress will be shown in the console panel. 
+
+<img src="img/gui5.png" alt="Open Viewer" width="200"/>
+
+The final step is to launch the default .xls viewer to navigate the results. The results of the last computation can be opened without having to recomputed all the step by clicking on the button “View Result” of the GUI, or, alternatively, by opening the s-cube.xls file in the input file directory.
+
 
 ## SoBigData GUI
 
