@@ -5,7 +5,7 @@ baroni@di.unipi.it, ruggieri@di.unipi.i
 
 The term segregation refers to the “_separation of socially denied groups_" [[1]](#references). People are partitioned into two or more groups on the grounds of personal or cultural traits that can foster discrimination, such as gender, age, ethnicity, income, skin color, language, religion, political opinion, membership of a national minority, etc. Contact, communication, or interaction among groups are limited by their physical, working or socio-economic distance. Members of a group tend to cluster together when dissecting the society into organizational units (neighborhoods, schools, job types). In [[2]](#references), we proposed a data-driven approach to search for (the “discovery") apriori-unknown contexts and social groups experiencing high segregation risk. We quantify such a risk through a reference segregation index, and assume that a value of the index above a given threshold denotes a situation worth for further scrutiny. We provide in [[2]](#references) a solution to the segregation discovery problem based on an analytical process that relies on frequent pattern mining. The approach is challenged in a complex scenario, which targets segregation of minority groups (youngsters, seniors, females) in the boards of companies. For instance, a social segregation question we are able to study is: _which minority groups are segregated in the boards of companies and for which type of companies?_ The approach is implemented in the SCube system, which is described in detail in [[3, 4]](#references). 
 
-The SCube system comes with two interfaces.  
+The SCube system comes with Java APIs with a class with main for every module of the system. Moreover, there are two user interfaces:
 - The first one is a [standalone wizard](#standalone-wizard-gui) that guides the user throughout all the steps of the analytical process, asking for inputs and parameters when appropriate, and finish launching Microsoft Excel or Libre Office on the output file. 
 - The second one is a [cloud service](#sobigdata-gui) offered by the SoBigData research infrastructure, a web front-end comprising a catalogue of data, services, and virtual research environments for big data and social mining research.
 
@@ -25,6 +25,16 @@ In the analysis of segregation in the network of boards of directors, the starti
 ## Input Files
 
 ## Input Parameters
+
+SCube accepts the following parameters:
+- SA attributes: the comma-separated list of segregation attributes in the directors input. For instance, “age,sex”. All remaining attributes of directors will be considered context attributes (CA attributes).
+- Output directory: the directory containing the intermediate processed files, and the final output.
+- Edge-weight threshold (optional, default is “3”): this is used to remove edges of weight lower or equal than the threshold from the Giant Component of the graph of companies connected by shared directors (see [[2, 3]](#references)). 
+- Minimum support (default is “500”): this is the minimum number for the total minority population, i.e., **M** <span style='font-size:100px;'>&#8805;</span> 500 (or the passed value) is a constraint that restricts the set of indexes computed.
+- Isolated nodes (default is true): this parameter includes or excludes from the analysis companies that share no directory with any other company (“isolated”).
+
+Parameters used by Java API's classes are set in the option file “varDefs.props”. 
+
 
 ## Standalone Wizard GUI
 
