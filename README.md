@@ -98,7 +98,7 @@ The final step is to launch the default .xls viewer to navigate the results. The
 
 A GUI in the cloud can be accessed from the SoBigData research infrastructure (http://www.sobigdata.eu/access/virtual), after registration (for free!).
 
-<img src="img/sobigdata1.png" alt="Excel Sheet" width="500"/>
+<img src="img/sobigdata1.png" alt="Excel Sheet" width="700"/>
 
 Locate the SCube method in SoBigDataLab as follows.
 
