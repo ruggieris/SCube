@@ -35,6 +35,22 @@ SCube accepts the following parameters:
 
 Parameters used by Java API's classes are set in the option file “varDefs.props”. 
 
+## Output Pivot-Table
+
+SCube provides in output a Microsoft Excel file such as the following:
+
+<img src="img/excel1.png" alt="Excel Sheet" width="500"/>
+
+Here age and sex are segregation attributes (SA) of directors, County and Activities are context attributes (CA) of companies, and timeUnit is the time snapshot a row refers to. Basically, age and sex determine A, the minority population under analysis, County and Activities determine B, the reference total population, and timeUnit fix the time snapshot at which analysis refers to.  For instance, the third row considers how segregated are female irrespective of the age whose company is in the Hiiumaa county irrespective of the company activity sector. For each minority population A and reference population B, the remaining columns report:
+- **M**, the size of the minority population.
+- **T**, the size of the reference population.
+The value of several segregation indexes: the dissimilarity index _D(**A**, **B**)_,  Entropy , Gini Isolation, Interaction, and Atkinson..
+
+Multidimensional analysis of the output can be performed within Excel by building a Pivot Table and/or Pivot charts. This is part of post-processing of the output, and it depends on the input segregation and context attributes. An example use of Pivot charts is the following figure, which reports the value of dissimilarity index for female directors, at the variation of the industry sector of the company groups they belong in the board of. 
+
+<img src="img/excel2.png" alt="Excel Pivot-Chart" width="500"/>
+
+The index is shown for population of directors living in the area of Harjumaa and in the whole Estonian country (label “blank”). The radar plot shows how Harjumaa has lower segregation than the whole country for almost all industry sectors. Note, however, that data is a sample and results cannot be stated in general. 
 
 ## Standalone Wizard GUI
 
