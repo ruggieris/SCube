@@ -24,14 +24,31 @@ In the analysis of segregation in the network of boards of directors, the starti
 
 ## Input Files
 
+The main inputs of SCube are three CSV files with header that specify information about individuals (or directors), about groups (or companies), and about membership of individuals to groups (i.e., directors to the board of a company). The type of attributes in CSV files is assumed to be discrete. Numeric attributes (e.g., age) must be discretized (e.g., into age-ranges such as “0-20, 21-30, …”) beforehand. Segregation (SA) and context attributes (CA) can be multi-valued. For instance, tge attribute “sector” for the company industry sector can have single values, such as “Software”, or multiple values separated by semi-comma, such as “Restaurant;Hotel”. Sample input files are distributed with SCube. In detail:
+
+- **individualFilePath** (or **directors**): is a CSV file with a line for each individual (or director). Columns include: directorID (an integer), a number of SA segregation attributes (e.g., gender, age, etc.), and a number of CA context attributes about the director (e.g., residence, education, etc.). In the example files, there are 2 SA attributes: age and sex.
+- **groupFilePath** (or **company**): is a CSV file with a line for each company. Columns include: companyID (an integer), and a number of context attributes CA about the company (e.g., industry sector, number of employees, etc.). In the example files, there are 2 CA attributes: County and Activities. Activities is a multi-valued attribute with statistical codes of economy activity of the company (something close to NACE code).
+- **membershipFilePath** (or **bods**): a CSV file with a line for every individual beloning to a group in a certain time interval and for a given role. Columns include: directorID (an integer), companyID (an integer), startDate (a date in the format YYYY-MM-DD), endDate (a date in the format YYYY-MM-DD), and a context attribute (CA) denoting the role (e.g., member, CEO, etc.) In the example files, such columns describe directors belonging to the boards of companies in a given time period and with a given role.
+
+The number and the name of segregation (SA) and context attributes (CA) is not fixed apriori. They are retrieved from the input files above.
+
 ## Input Parameters
 
 SCube accepts the following parameters:
-- SA attributes: the comma-separated list of segregation attributes in the directors input. For instance, “age,sex”. All remaining attributes of directors will be considered context attributes (CA attributes).
-- Output directory: the directory containing the intermediate processed files, and the final output.
-- Edge-weight threshold (optional, default is “3”): this is used to remove edges of weight lower or equal than the threshold from the Giant Component of the graph of companies connected by shared directors (see [[2, 3]](#references)). 
-- Minimum support (default is “500”): this is the minimum number for the total minority population, i.e., **M** <span style='font-size:100px;'>&#8805;</span> 500 (or the passed value) is a constraint that restricts the set of indexes computed.
-- Isolated nodes (default is true): this parameter includes or excludes from the analysis companies that share no directory with any other company (“isolated”).
+- **atkinsonParameter**: the Atkinson segregation index is parametric to a value in the range (0,1). Such a value can be specified with this option. 
+- **clusteringAlgorithm** (default is “filterEdgeGCForWeight”): the algorithm used to cluster groups (companies) on the basis of shared individuals (directors). Possible values:
+  - “WCCS”: weakly connected components.
+  - “filterEdgeGCForWeight”: filter out edges from Giant Component with weight lower or equal than **edgeWeight**, then WCCs.
+  - “filterEdges”:  filter edges from whole graph, then WCCs.
+  - “removeGiantComponent”: remove whole Giant Component.
+  - “stoc”: STOC algorithm from [[5]](#references).
+- **date**: the comma-separated list of date snapshots (in the format YYYY-MM-DD) at which to compute segregation indexes. For example: 2013-01-01, 2014-01-01.
+- **edgeWeight** threshold (optional, default is “3”): this is used to remove edges of weight lower or equal than the threshold from the Giant Component of the graph of companies connected by shared directors (see “filterEdgeGCForWeight” **clusteringAlgorithm**). 
+- **folderOutput**: the directory containing the intermediate processed files, and the final output.
+- **minimumSupport** (default is “500”): this is the minimum number for the total minority population, i.e., **M** <span style='font-size:100px;'>&#8805;</span> 500 (or the passed value) is a constraint that restricts the set of indexes computed.
+- **moduleSegregationCA** (or **SA attributes**): the comma-separated list of segregation attributes in the directors input. For instance, “age,sex”. All remaining attributes of directors will be considered context attributes (CA attributes).
+- **moduleSegregationIGNORE**: the comma-separated list of attributes in any of the input files to be ignored in the segregation analysis.
+- **weighIsolateNode** (default is “true”): this parameter includes or excludes from the analysis companies that share no directory with any other company (“isolated”).
 
 Parameters used by Java API's classes are set in the option file “varDefs.props”. 
 
@@ -89,3 +106,5 @@ The final step is to launch the default .xls viewer to navigate the results. The
 [3] A. Baroni.  [Segregation-aware data mining](https://etd.adm.unipi.it/theses/available/etd-10122017-195900/). PhD thesis. Dipartimento di Informatica, Università di Pisa. October 2017.  
 
 [4] A. Baroni, S. Ruggieri. [SCube: A Tool for Segregation Discovery](http://openproceedings.org/2019/conf/edbt/EDBT19_paper_212.pdf). 22nd International Conference on Extending Database Technology (EDBT 2019): 542-545. OpenProceedings.org, March 2019.
+
+[5] A. Baroni, A. Conte, M. Patrignani, S. Ruggieri. [Efficiently Clustering Very Large Attributed Graphs](https://arxiv.org/abs/1703.08590). IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM 2017) 369-376. ACM, August 2017.
