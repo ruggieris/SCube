@@ -61,7 +61,7 @@ SCube provides in output a Microsoft Excel file such as the following:
 Here age and sex are segregation attributes (SA) of directors, County and Activities are context attributes (CA) of companies, and timeUnit is the time snapshot a row refers to. Basically, age and sex determine A, the minority population under analysis, County and Activities determine B, the reference total population, and timeUnit fix the time snapshot at which analysis refers to.  For instance, the third row considers how segregated are female irrespective of the age whose company is in the Hiiumaa county irrespective of the company activity sector. For each minority population A and reference population B, the remaining columns report:
 - **M**, the size of the minority population.
 - **T**, the size of the reference population.
-The value of several segregation indexes: the dissimilarity index _D(**A**, **B**)_,  Entropy , Gini Isolation, Interaction, and Atkinson..
+The value of several segregation indexes: the dissimilarity index _D(**A**, **B**)_,  Entropy , Gini Isolation, Interaction, and Atkinson.
 
 Multidimensional analysis of the output can be performed within Excel by building a Pivot Table and/or Pivot charts. This is part of post-processing of the output, and it depends on the input segregation and context attributes. An example use of Pivot charts is the following figure, which reports the value of dissimilarity index for female directors, at the variation of the industry sector of the company groups they belong in the board of. 
 
@@ -95,6 +95,26 @@ The final step is to launch the default .xls viewer to navigate the results. The
 
 
 ## SoBigData GUI
+
+A GUI in the cloud can be accessed from the SoBigData research infrastructure (http://www.sobigdata.eu/access/virtual), after registration (for free!).
+
+<img src="img/sobigdata1.png" alt="Excel Sheet" width="500"/>
+
+Locate the SCube method in SoBigDataLab as follows.
+
+<img src="img/sobigdata2.png" alt="Excel Sheet" width="500"/>
+
+SCube inputs and parameters can be set online.
+
+<img src="img/sobigdata3.png" alt="Excel Sheet" width="500"/>
+
+In particular, input files must be located in the SoBigData workspace, which can be accessed as shown next.
+
+<img src="img/sobigdata4.png" alt="Excel Sheet" width="500"/>
+
+Multidimensional analysis of the output can be performed within Excel by building a Pivot Table and/or Pivot charts. 
+
+<img src="img/sobigdata5.png" alt="Excel Sheet" width="500"/>
 
 
 ## References
