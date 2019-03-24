@@ -1,0 +1,1 @@
+java -Xmx15g -classpath .\bin;.\lib\* scube.Gui

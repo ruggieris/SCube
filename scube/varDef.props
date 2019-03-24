@@ -1,0 +1,116 @@
+########## >> Dataset specific << ########
+
+# Input file paths and parameters for Estonian dataset
+individualFilePath=./datasets/estonian_sample/data/director.csv
+groupFilePath=./datasets/estonian_sample/data/company.csv
+membershipFilePath=./datasets/estonian_sample/data/bods.csv
+# generic output folder
+folderOutput=./datasets/estonian_sample/scube/
+date=2000-01-01,2001-01-01,2002-01-01,2003-01-01,2004-01-01,2005-01-01,2006-01-01,2007-01-01,2008-01-01,2009-01-01,2010-01-01,2011-01-01,2012-01-01,2013-01-01,2014-01-01,2015-01-01,2016-02-01
+# residence,legalType,County,City,Activities
+moduleSegregationCA=County,Activities
+moduleSegregationIGNORE=
+minimumSupport=200
+
+# Input file paths and parameters for Italian dataset
+individualFilePath=./datasets/italian_sample/data/director.csv
+groupFilePath=./datasets/italian_sample/data/company.csv
+membershipFilePath=./datasets/italian_sample/data/bods.csv
+# generic output folder
+folderOutput=./datasets/italian_sample/scube/
+date=
+moduleSegregationCA=residenceID,placeBirthID,ateco
+moduleSegregationIGNORE=
+minimumSupport=500
+########## >> ALL modules << ########
+
+# delimiter in CSV files
+delimiter=,
+# log file in output folder
+logFile=log.log
+
+########## >> Module GraphBuilder << ########
+
+## Projection type: 0 (groups projection), 1 (individual projection)
+projectionMode=0
+# Include isolate nodes: "yes" or "no"
+includeIsolateNode=yes
+# Output isolate nodes
+isolateNodeGraph=isolateNodes.csv
+# Output projected graph edges
+edgeGraph=edgesGraph.csv
+
+########## >> Module GraphClustering << ########
+
+# Clustering algorithms: 
+#  "wccs"	# default: weakly connected components (WCCs)
+#  "filterEdgeGCForWeight" # filter edges from Giant Component only, then WCCs
+#  "filterEdges" # filter edges from whole graph, then WCCs
+#  "removeGiantComponent" # remove whole Giant Component
+#  "stoc" # STOC algorithm
+clusteringAlgorithm=filterEdgeGCForWeight
+# Filter edges with weight <= edgeWeight. Used in "filterEdgeGCForWeight" and "filterEdges".
+edgeWeight=3
+# The minimum weight (number of directors) for isolated nodes to be considered as units.
+minimunWeightIsolated=1
+# A quality parameter of the algorithm StoC
+alpha=0.2
+
+#####>> SToC algorithm << #####
+semantic_attratio=0.4
+topological_attratio=0.4
+error=0.9
+plotError=0.01
+tau=0.995
+debug=true
+#The number of hashes to use in each hash table
+hashes=3
+hashTables=5
+neighbours=10000
+# File with semantic attributes of nodes
+stocDataSetFileName=./datasets/italian/processed/director-coordinates.csv
+
+#types: 0-continuous 1-discrete
+types=0110000
+neighborsLevel=4
+#only use GCC of the graph: true or false
+restrictToGcc=false
+#I/O FILE NAMES
+hasDatasetHeader=true
+#Used for the graph dataset for identifying  the attribute columns 
+graphDelimiter=,
+#Used for the vectors dataset for identifying the attribute columns 
+datasetDelimiter=,
+#Used for the vectors dataset for identifying the values within the multi-value column
+datasetMultiValuesDelimiter=;
+firstDatasetColumnIsKey=yes
+outputCommunitiesSizeDistribution=./datasets/italian/scube/ClusterSizeDistr.csv
+outputCommunitiesQuality=./datasets/italian/scube/ClusterQuality.txt
+
+########## >> Module TableBuilder << ########
+
+# Multivalue attribute delimiter
+multiValuesDelimiter=;
+# Input file name
+nodeUnitFilePath=nodeUnit.csv
+# Output file name
+finalTableFilePath=finalTable.csv
+
+########## >> Module Segregation Data Cube Builder << ########
+
+# Output file
+moduleSegregationOutput=segregation_index.csv
+# Append output
+appendResults=no
+# Atkinson's segregation index
+#For values <= [0.0,0.5] areal units where the proportion of minorities is smaller than the metropolitan area�s average
+# (i.e., where minorities are underrepresented) contribute more to the segregation index;
+#For large values of theshape parameter (> (0.5 up to 1.0]  areas of over-representation contribute more.
+atkinsonParameter=0.2
+# FPGrowth executable
+fimiExecutableProgram=./lib/fpgrowth.exe
+
+########## >> Module Visualizer << ########
+
+moduleVisualizerInput=segregation_index.csv
+moduleVisualizerOutput=scube.xlsx
