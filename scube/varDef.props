@@ -1,16 +1,5 @@
 ########## >> Dataset specific << ########
 
-# Input file paths and parameters for Estonian dataset
-individualFilePath=./datasets/estonian_sample/data/director.csv
-groupFilePath=./datasets/estonian_sample/data/company.csv
-membershipFilePath=./datasets/estonian_sample/data/bods.csv
-# generic output folder
-folderOutput=./datasets/estonian_sample/scube/
-date=2000-01-01,2001-01-01,2002-01-01,2003-01-01,2004-01-01,2005-01-01,2006-01-01,2007-01-01,2008-01-01,2009-01-01,2010-01-01,2011-01-01,2012-01-01,2013-01-01,2014-01-01,2015-01-01,2016-02-01
-# residence,legalType,County,City,Activities
-moduleSegregationCA=County,Activities
-moduleSegregationIGNORE=
-minimumSupport=200
 
 # Input file paths and parameters for Italian dataset
 individualFilePath=./datasets/italian_sample/data/director.csv
@@ -22,6 +11,20 @@ date=
 moduleSegregationCA=residenceID,placeBirthID,ateco
 moduleSegregationIGNORE=
 minimumSupport=500
+
+# Input file paths and parameters for Estonian dataset
+individualFilePath=./datasets/estonian_sample/data/director.csv
+groupFilePath=./datasets/estonian_sample/data/company.csv
+membershipFilePath=./datasets/estonian_sample/data/bods.csv
+# generic output folder
+folderOutput=./datasets/estonian_sample/scube/
+date=2012-01-01,2014-01-01,2016-02-01
+#2000-01-01,2001-01-01,2002-01-01,2003-01-01,2004-01-01,2005-01-01,2006-01-01,2007-01-01,2008-01-01,2009-01-01,2010-01-01,2011-01-01,2012-01-01,2013-01-01,2014-01-01,2015-01-01,2016-02-01
+# residence,legalType,County,City,Activities
+moduleSegregationCA=County,Activities
+moduleSegregationIGNORE=
+minimumSupport=200
+
 ########## >> ALL modules << ########
 
 # delimiter in CSV files
